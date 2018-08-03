@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./libs/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div ref="hello" @click="handleDiv">hello world</div>
+    </div>
+    <script>
+        var app;
+        app = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                handleDiv: function () {
+                    console.log(this.$refs.hello.innerHTML)
+                }
+            }
+        });
+    </script>
+</body>
+</html>

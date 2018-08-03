@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./libs/vue.js"></script>
+
+</head>
+<body>
+<div id="app">
+
+    <template v-for="(item,index) in list" :key="item.id">
+        <div>{{item.name}}----{{index}}</div>
+    </template>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            list: [
+                {id:'1',name: '1'},
+                {id:'2',name: '2'},
+                {id:'3',name: '3'},
+                {id:'4',name: '4'}
+            ]
+
+        }
+
+    })
+    //app.list[2].name="ojbk"
+    //这样修改的同时在视图层同样可以看到数据的更改
+    //但是如果是这样 app.list[1]={name: "no 2",id: '2'} 视图层就看不到数据的改变了。
+    //app.userInfo.name="lili"是可以修改的，但是
+    //app.userInfo.address="beijing"这样修改了但是数据看不到
+    //想要同时修改数据的时候在视图层也能显示出来的三个方法：
+    //1.直接改变引入地址：
+    //app.list = [{key : value}]
+    //2.使用数组的方法：
+    //push pop shift unshift splice sort reverse
+    //3.使用set方法
+    //对象：Vue.set(app.userInfo,"address","beijing") /vm.$set(vm.userInfo,"address","beijing")
+    //数组：Vue.set(app.userInfo,1,5) //下标为1的数改成五//vm.$set(vm.userInfo,1,4)
+</script>
+</body>
+</html>

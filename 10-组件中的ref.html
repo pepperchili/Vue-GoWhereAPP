@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./libs/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <temp @change="handleNumberChange" ref="one"></temp>
+    <temp @change="handleNumberChange" ref="two"></temp>
+    <div>{{total}}</div>
+</div>
+<script>
+    Vue.component("temp",{
+        data: function () {
+            return {
+                number: 0
+            }
+        },
+        template: '<div @click="handleNumber">{{ number }}</div>',
+        methods: {
+            handleNumber: function () {
+                this.number ++
+                this.$emit('change')
+            }
+        }
+    })
+    var app = new Vue({
+        el: '#app',
+        data: {
+            total: 0
+        },
+        methods: {
+            handleNumberChange: function () {
+                console.log(this.$refs.one)
+                console.log(this.$refs.two)
+                this.total = this.$refs.one.number + this.$refs.two.number
+            }
+        }
+    });
+    //所以在div中使用ref="one"的时候，this.$refs.one是div标签，DOM元素
+    //但是在组件中使用ref="one"的时候，this.$refs.one是该组件这个对象的引用
+</script>
+</body>
+</html>

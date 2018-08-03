@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./libs/vue.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <div v-if="show=='a'">{{ message }}</div>
+    <div v-else-if="show=='b'">This is b</div>
+    <div v-else>This is others</div>
+    <div v-show="show">{{ message }}</div>
+
+    用户名：<input key="username">
+    密码： <input key="password">
+
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            show: 'b',
+            message: 'hello world'
+        },
+        methods: {
+            handleCss: function () {
+                this.actived = this.actived === "actived"?"":"actived"
+            }
+        }
+    })
+</script>
+</body>
+</html>

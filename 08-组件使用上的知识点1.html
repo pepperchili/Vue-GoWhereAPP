@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./libs/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <table>
+            <tbody>
+                <tr is="row"></tr>
+                <tr is="row"></tr>
+                <tr is="row"></tr>
+                <tr is="row"></tr>
+            </tbody>
+        </table>
+    </div>
+    <!--
+    因为HTML5中tbody下一定要是tr,所以如果不是tr标签的话，就会出现bug，所以需要用is属性来解决这个bug
+    -->
+    <script>
+        Vue.component("row",{
+            data: function () {
+                return {
+                    content: 'this is row'
+                }
+            },
+            template: "<tr><td>{{content}}</td></tr>"
+        })
+        var vm = new Vue({
+            el: "#app"
+        })
+    </script>
+</body>
+</html>
