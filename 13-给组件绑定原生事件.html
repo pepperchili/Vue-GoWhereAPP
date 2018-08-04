@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./libs/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <child @click.native="handleClick"></child>
+    </div>
+    <script>
+        Vue.component('child',{
+            template: '<div>I am child.</div>'
+        })
+        var vm = new Vue({
+            el: "#app",
+            methods: {
+                handleClick: function () {
+                   alert('hello my child')
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

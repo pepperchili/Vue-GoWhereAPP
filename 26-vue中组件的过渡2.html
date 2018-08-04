@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./libs/vue.js"></script>
+    <style>
+        .v-enter,.v-leave-to {
+            opacity: 0
+        }
+        .v-enter-active,.v-leave-active {
+            transition: opacity 1s
+        }
+    </style>
+
+
+</head>
+<body>
+    <div id="app">
+        <transition mode="out-in">
+            <div v-if="show" key="hello">hello world</div>
+            <div v-else key="byebye">bye bye</div>
+        </transition>
+        <button @click="handleClick">切换</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                show: true
+            },
+            methods: {
+                handleClick: function () {
+                    this.show = !this.show
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

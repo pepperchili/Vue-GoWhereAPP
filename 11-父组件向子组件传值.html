@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./libs/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <couter :cout="3" @change="handleChange"></couter>
+        <couter :cout="2" @change="handleChange"></couter>
+        <div>{{total}}</div>
+    </div>
+    <script>
+        var couter = {
+            props: ['cout'],
+            data: function () {
+                return {
+                    number: this.cout
+                }
+            },
+            template: "<div @click='handleClick'>{{ number }}</div>",
+            methods: {
+                handleClick: function () {
+                    this.number =this.number +2
+                    this.$emit('change',2)
+                }
+            }
+        }
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                total: 5
+            },
+            components: {
+                couter: couter
+            },
+            methods: {
+                handleChange: function (step) {
+                    this.total = this.total +step
+                }
+            }
+        })
+    </script>
+</body>
+</html>

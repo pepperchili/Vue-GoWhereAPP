@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./libs/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       <baby :cout="'123877'"></baby>
+    </div>
+    <script>
+        Vue.component('baby',{
+            props: {
+              cout: {
+                  type: String,
+                  validator: function (value) {
+                      return value.length>5
+                  }
+              }
+            },
+            template: '<div>{{cout}}</div>'
+        })
+        var vm = new Vue({
+            el: "#app",
+
+        })
+
+        /**
+         * props特性和非props特性：
+         * 什么是props？
+         * 概念：父组件给子组件传值的时候，在props中能够接收，父子有一个对应关系
+         * 特性：
+         * 1.在dom结构中，content：'123'属性是不会在dom中看到的
+         * 2.在props接受了content数据后，可以在模板中使用该属性
+         * 什么是非props特性？
+         * 概念：当父组件给子组件传值时，子组件没有props，也就是没有接收
+         * 特性：
+         * 1.当没有props接收属性的时候，子组件就不能使用
+         * 2.content：htllo能够显示在属性当中
+         */
+    </script>
+</body>
+</html>

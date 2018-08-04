@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./libs/vue.js"></script>
+    <link rel="stylesheet" href="./libs/animate.css">
+    <script src="./libs/velocity.js"></script>
+    <style>
+        .v-enter,.v-leave-to {
+            opacity: 0
+        }
+        .v-enter-active,.v-leave-active {
+            transition: opacity 3s
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--type的意思是指在animate的执行时间是1s而transition中的时间是3s所以type就指定要以transition的时间为准-->
+    <transition
+            @before-enter="handleBeforeEnter"
+            @enter="handleEnter"
+            @after-enter="handleAfterEnter"
+    >
+        <div v-if="show">hello world</div>
+    </transition>
+    <button @click="handleClick">toggle</button>
+</div>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            show: true
+        },
+        methods: {
+            handleClick: function () {
+                this.show = !this.show
+            },
+            handleBeforeEnter: function (el) {
+                el.style.opacity = 0
+            },
+            handleEnter: function (el,done) {
+                Velocity(el,{
+                    opacity: 1
+                },{
+                    duration: 10000,
+                    complete: done
+                })
+            },
+            handleAfterEnter: function (el) {
+                alert('动画结束')
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

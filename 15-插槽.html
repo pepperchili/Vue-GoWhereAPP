@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./libs/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <child>
+            <h1 slot="hello">hello world</h1>
+            <h1 slot="welcome">welcome!!</h1>
+        </child>
+    </div>
+    <script>
+        Vue.component('child',{
+            template: `<div>
+                            <slot name="hello"></slot>
+                            <slot name="welcome"></slot>
+                       </div>`
+        })
+        var vm = new Vue({
+            el: "#app",
+
+        })
+
+    </script>
+</body>
+</html>

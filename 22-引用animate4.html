@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./libs/vue.js"></script>
+    <link rel="stylesheet" href="./libs/animate.css">
+    <style>
+        .v-enter,.v-leave-to {
+            opacity: 0
+        }
+        .v-enter-active,.v-leave-active {
+            transition: opacity 3s
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--type的意思是指在animate的执行时间是1s而transition中的时间是3s所以type就指定要以transition的时间为准-->
+    <transition
+            :duration="{enter: 5000,leave: 1000}"
+            appear
+            enter-active-class="animated bounceInDown v-enter-active"
+            leave-active-class="animated wobble v-leave-active"
+            appear-active-class="animated bounceInDown"
+
+    >
+        <div v-if="show">hello world</div>
+    </transition>
+    <button @click="handleClick">切换</button>
+</div>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            show: true
+        },
+        methods: {
+            handleClick: function () {
+                this.show = !this.show
+            }
+        }
+    })
+
+</script>
+</body>
+</html>
